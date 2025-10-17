@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-black: #121111; 
+    --color-grey: #5F5D5C;
+    --color-white: #FAFAF8;
+    --color-blue: #473BF0;
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+::selection {
+    @apply bg-blue text-white;
+}
+
+:root {
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-black) transparent;
+}
+
+body {
+    font-family: 'Inter Variable', sans-serif;
+}
