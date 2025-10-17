@@ -1,7 +1,21 @@
 ---
 import Layout from '@layouts/Layout.astro';
+
+import Grid from '@components/Grid.astro';
+import Card from '@components/Card.astro';
+
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
 ---
 
 <Layout>
-	<p>Index.</p>
+    <Grid>
+        {posts.map((post) => {
+            const { title, description, tags } = post.data;
+            return (
+                <Card id={post.id} title={title} description={description} tags={tags?.sort()} />
+            )
+        })}
+    </Grid>
 </Layout>

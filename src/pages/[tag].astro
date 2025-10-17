@@ -1,0 +1,36 @@
+---
+import Layout from '@layouts/Layout.astro';
+
+import Grid from '@components/Grid.astro';
+import Card from '@components/Card.astro';
+
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const posts = await getCollection('posts');
+    const tags = [...new Set(posts.map((post: any) => post.data.tags).flat())];
+    return tags.map((tag) => {
+        const filteredPosts = posts.filter((post: any) => post.data.tags.includes(tag));
+        const formattedTag = tag.replaceAll(' ', '-').toLowerCase();
+        return {
+            params: { tag: formattedTag },
+            props: { 
+                posts: filteredPosts
+            },
+        };
+    });
+}
+
+const { posts } = Astro.props;
+---
+
+<Layout>
+    <Grid>
+        {posts.map((post) => {
+            const { title, description, tags } = post.data;
+            return (
+                <Card id={post.id} title={title} description={description} tags={tags?.sort()} />
+            )
+        })}
+    </Grid>
+</Layout>

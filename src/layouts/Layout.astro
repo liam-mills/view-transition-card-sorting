@@ -2,6 +2,8 @@
 import '@style';
 import '@fontsource-variable/inter';
 import { SITE_TITLE } from '@consts';
+
+import Tags from '@components/Tags.astro';
 ---
 
 <!doctype html>
@@ -12,7 +14,8 @@ import { SITE_TITLE } from '@consts';
 		<meta name="generator" content={Astro.generator} />
 		<title>{SITE_TITLE}</title>
 	</head>
-	<body class="bg-white text-black p-6 md:p-12">
+	<body class="bg-white text-black p-6 md:p-12 grid gap-6 md:gap-12">
+		<Tags />
 		<slot />
 	</body>
 </html>

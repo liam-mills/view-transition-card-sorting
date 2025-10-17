@@ -1,0 +1,16 @@
+---
+import { REPO_NAME } from '@consts';
+import { getCollection } from 'astro:content';
+
+import Tag from '@components/Tag.astro';
+
+const posts = await getCollection('posts');
+const tags = [...new Set(posts.map((post: any) => post.data.tags).flat().sort())];
+---
+
+<div class="flex flex-wrap gap-3">
+    <Tag href={`/${REPO_NAME}/`}>All</Tag>
+    {tags.map((tag) => (
+        <Tag href={`/${REPO_NAME}/${tag.replaceAll(' ', '-').toLowerCase()}/`}>{tag}</Tag>
+    ))}
+</div>

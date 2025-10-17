@@ -1,0 +1,11 @@
+---
+interface Props {
+    href: string
+}
+
+const { href } = Astro.props;
+---
+
+<a href={href} class:list={['border border-black rounded px-2 py-1 text-sm', {'bg-black text-white': Astro.url.pathname === href}]}>
+    <slot />
+</a>
