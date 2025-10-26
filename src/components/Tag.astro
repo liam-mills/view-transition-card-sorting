@@ -6,6 +6,6 @@ interface Props {
 const { href } = Astro.props;
 ---
 
-<a href={href} class:list={['border border-black rounded px-2 py-1 text-sm', {'bg-black text-white': Astro.url.pathname === href}]}>
+<a href={href} class:list={['border border-black rounded px-2 py-1 text-sm', {'bg-black text-white': Astro.url.pathname.replace(/^\/|\/$/g, '') === href.replace(/^\/|\/$/g, '')}]}>
     <slot />
 </a>
