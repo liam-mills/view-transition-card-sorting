@@ -11,12 +11,12 @@ const { id, title, description, tags } = Astro.props;
 
 <article class="flex flex-col gap-6 justify-between bg-black text-white p-3 rounded" style={`view-transition-name: ${id};`}>
     <div class="flex flex-col gap-3">
-        <h1 class="font-medium">{title}</h1>
-        <p class="text-sm">{description}</p>
+        <h1 class="font-medium" style={`view-transition-name: ${id}-title;`}>{title}</h1>
+        <p class="text-sm" style={`view-transition-name: ${id}-description;`}>{description}</p>
     </div>
     {tags && <div class="flex gap-3 self-end text-sm">
-        {tags.map((tag) => (
-            <p>{tag}</p>
+        {tags.map((tag, index) => (
+            <p style={`view-transition-name: ${id}-tag-${index};`}>{tag}</p>
         ))}
     </div>}
 </article>
